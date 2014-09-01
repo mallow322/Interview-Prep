@@ -1,0 +1,42 @@
+import java.util.ArrayList;
+
+/**
+ * 
+ * @author Joe 
+ * @date 8/31/14
+ *
+ */
+
+/**
+ * Implement an algorithm to determine if a string has all unique characters.
+ * What if you cannot use additional data structures?
+ */
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		String example_string = "hello";
+		
+		System.out.println(IsUniqueString(example_string));S
+		
+
+	}
+	
+	public static boolean IsUniqueString(String string) {
+		ArrayList<Character> char_list = new ArrayList<Character>();
+		for (int i = 0; i < string.length(); i++) {
+			// If the list isn't empty, check if the character already exists in our set
+			if (char_list != null) {
+				if (char_list.contains(string.toCharArray()[i])) {
+					return false;
+				}
+			}
+			// Otherwise, add it to our set and repeat
+			char_list.add(string.toCharArray()[i]);
+		}
+		return true;
+	}
+
+}
