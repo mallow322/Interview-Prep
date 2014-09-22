@@ -9,7 +9,7 @@ void reverse_string(char*);
 int main (int argc, char** argv) {
 	printf("The original string is %s\n", argv[1]);
 	reverse_string(argv[1]);
-	printf("The reversed string is %s\n", argv[1]);
+	printf("The reversed string using method 1 is %s\n", argv[1]);
 	return 0;
 }
 
