@@ -14,9 +14,25 @@ int main (int argc, char** argv) {
 }
 
 void reverse_string(char* str) {
+	int length = 0;
+	while (*(str+length) != '\0') {
+		length++;
+	}
+	
+	char* end = &(str[length-1]);
+	char temp;
+	while (str < end) {
+		temp = *(str);
+		*(str) = *(end);
+		*(end) = temp;
+		str++;
+		end--;
+	}
+}
+
+void reverse_stringV2(char* str) {
 	char* end = str;
 	char temp;
-
 	if (str) {
 		// iterate to the end of the string
 		while (*end) {
