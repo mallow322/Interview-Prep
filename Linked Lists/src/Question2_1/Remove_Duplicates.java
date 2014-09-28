@@ -7,6 +7,35 @@ import CtCILibrary.AssortedMethods;
 import CtCILibrary.LinkedListNode;
 
 public class Remove_Duplicates {
+	/*
+	 * O(1) space
+	 * O(N^2) time
+	 */
+	public static void delete_duplicates_noBuffer(LinkedListNode head) {
+		if (head == null) return;
+		LinkedListNode current = head;
+		/**
+		 * Current iterates through the linked list.
+		 * Runner runs through the subsequent nodes to check for duplicates.
+		 */
+		while (current != null) {
+			LinkedListNode runner = current;
+			while (runner.next != null) {
+				if (runner.next.data == current.data){
+					runner.next = runner.next.next;
+				}
+				else {
+					runner = runner.next;			
+				}
+			}
+			current = current.next;
+		}
+	}
+	
+	/*
+	 * O(N) Space
+	 * O(N) Time
+	 */
 	public static void delete_duplicatesB(LinkedListNode n) {
 		HashSet<Integer> set = new HashSet<Integer>();
 		LinkedListNode prev = null;
@@ -22,6 +51,10 @@ public class Remove_Duplicates {
 		}
 	}
 	
+	/*
+	 * O(N) Space
+	 * O(N) Time
+	 */
 	public static void delete_duplicatesA(LinkedListNode current) {
 		Hashtable<Integer, Boolean> table = new Hashtable<Integer, Boolean>();
 		LinkedListNode seen = null;
@@ -51,8 +84,8 @@ public class Remove_Duplicates {
 		}
 		System.out.println("Original list: " + head.printForward());
 //		delete_duplicatesA(head);
-		
-		delete_duplicatesB(head);
+//		delete_duplicatesB(head);
+		delete_duplicates_noBuffer(head);
 		System.out.println("After dupe has been called: " + head.printForward());
 	}
 }
