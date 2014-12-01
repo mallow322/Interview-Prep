@@ -44,6 +44,19 @@ inorder_traversal f z tree = go tree z
       in z'''
 
 flatten traversal = reverse . traversal (:) []
-test_preorder = flatten preorder_traversal t3
-test_inorder = flatten inorder_traversal t3
+test0_preorder = flatten preorder_traversal t3 -- [2, 1, 3]
+test0_inorder = flatten inorder_traversal t3 -- [1, 2, 3]
 
+-- A more generic traversal function.  Instead of implementing post-order traversal, let's try to generalize.
+traverse step f z tree = go tree z 
+  where 
+    go Empty z = z
+    go (Node val left right) z = step (f val) (go left) (go right) z
+
+preorder = traverse (\n left right -> right . left . n)
+inorder = traverse (\n left right -> right . n . left)
+postorder = traverse (\n left right -> n . right . left)
+
+test1_preorder = flatten preorder t3
+test1_inorder = flatten inorder t3
+test1_postorder = flatten postorder t3
