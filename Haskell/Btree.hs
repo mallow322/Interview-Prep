@@ -1,9 +1,8 @@
 module Tree where 
 
-data Tree a = 
-  Empty 
-  | Node a (Tree a) (Tree a)
-  deriving (Eq, Show)
+import qualified Data.Foldable as F
+
+data Tree a = Empty | Node a (Tree a) (Tree a) deriving (Eq, Show)
 
  -- a few Binary trees for examples
 t0 = Empty -- empty Btree
@@ -60,3 +59,7 @@ postorder = traverse (\n left right -> n . right . left)
 test1_preorder = flatten preorder t3
 test1_inorder = flatten inorder t3
 test1_postorder = flatten postorder t3
+
+-- Now, let's use the general traverse function we made for finding the min and max in a BST
+leftOrder = traverse (\n left right -> left . n)
+rightOrder = traverse (\n left right -> right . n)
